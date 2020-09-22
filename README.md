@@ -1,0 +1,1 @@
+This is an app that allows the user to scan and generate QR codes using the webcam. The project was made using ASP.NET framework and ZXing plugin.
