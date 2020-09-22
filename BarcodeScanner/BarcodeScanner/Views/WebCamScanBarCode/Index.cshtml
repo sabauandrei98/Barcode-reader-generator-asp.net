@@ -1,0 +1,50 @@
+﻿<script type="text/javascript">
+
+    function UploadPic() {
+        $.ajax({
+            type: 'POST',
+            url: ("@Url.Content("~/WebCamScanBarCode/Rebind")/"),
+            dataType: 'json',
+            success: function (data) {
+                $("#show").attr("src", data);
+                window.location.href = "http://localhost:57801/WebCamScanBarCode/Result";
+            }
+        });
+    }
+   
+</script>
+
+
+@using (Html.BeginForm())
+{
+    @section scripts
+{
+        <script src="@Url.Content("~/Scripts/jquery.webcam.js")">
+
+        </script>
+        <script type="text/javascript">
+
+            $("#Camera").webcam({
+                width: 500,
+                height: 500,
+                mode: "save",
+                swffile: "@Url.Content("~/Scripts/jscam.swf")",
+                onTick: function () { },
+                onSave: function () {
+                    UploadPic();
+                },
+                onCapture: function () {
+                    webcam.save("@Url.Content("~/WebCamScanBarCode/Capture")/");
+             },
+                debug: function () { },
+                onLoad: function () { }
+            });
+        </script>
+    }
+    <div style="margin: 0 auto; width: 500px; text-align: center">
+        <div style="float: left; border: 4px solid #ccc; padding: 5px">
+            <div id="Camera"></div><br>
+            <input type="button" value="Capture" onclick="webcam.capture();" />
+        </div>
+    </div>
+}

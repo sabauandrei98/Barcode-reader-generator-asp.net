@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>&nbsp;&nbsp;&nbsp;</th>
+        <th>Cod Produs</th>
+        <th>&nbsp;&nbsp;&nbsp;</th>
+        <th>Cantitate</th>
+    </tr>
+
+    @foreach (var barcode in ViewBag.List)
+    {
+        <tr>
+            <td>@barcode.id</td>
+            <td> </td>
+            <td>@barcode.code</td>
+            <td> </td>
+            <td>@barcode.quantity</td>
+        </tr>
+    }
+</table>

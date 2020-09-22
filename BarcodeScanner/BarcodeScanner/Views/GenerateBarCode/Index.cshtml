@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Producer Generator";
+}
+
+<h2>Generate a barcode</h2>
+
+
+@using (Html.BeginForm("Index", "GenerateBarCode", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <font color="grey">
+                <h4>->Format: "id_produs cantitate"</h4>
+                <h4>->Codul generat se va salva local .jpg</h4>
+                <h4>->Produs si cantitatea se vor adauga in baza de date</h4>
+            </font>
+            <input type="text" name="barcode" class="form-control col-4" id="textcode"/><br/>
+            <input type="submit" class="btn btn-primary" id="btnGenerate" value="Generate"/>
+            <hr/>
+
+            @if (ViewBag.GeneratedQrImagePath != null)
+            {
+                <img src="@Url.Content(ViewBag.GeneratedQrImagePath)" alt="Image" />
+                <font color="green">Code added to the database !</font><br /><br />
+            }
+            <br /><br />
+        </div>
+    </div>
+
+    if (ViewBag.FileInfo != null)
+    {
+
+        foreach (var fileInfo in ViewBag.FileInfo)
+        {
+            <img src="@Url.Content(fileInfo.path)" width="100px" height="100px" alt="Image" />
+                @Html.Raw(fileInfo.shortPath)
+                <font color="blue">@Html.Raw(fileInfo.message) </font>
+                <br/><br />
+        }
+    }
+}
+
